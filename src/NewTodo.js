@@ -28,7 +28,7 @@ const NewTodo = ({ todos, onAddTodo }) => {
 
   return (
         <form className="todo-form" onSubmit={handleSubmit}>
-            <h2 className="darkblue">What's The Plan For Today?</h2>
+            <h2 className="darkblue">{"What's The Plan For Today?"}</h2>
             <label className="darkblue"htmlFor="description">Description:</label>
             <input className="search-bar" name="description"
                 type="text"

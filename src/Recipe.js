@@ -8,7 +8,7 @@ const Recipe = ({ ingredients, title, link, image }) => {
             <h1>{title}</h1>
             <ul>
                 {ingredients.map(ingredient => (
-                    <li>{ingredient.text}</li>
+                    <li key={ingredient.text}>{ingredient.text}</li>
                 ))}
             </ul>
             <a className="a" href={link}>Cooking Instructions</a>

@@ -1,6 +1,19 @@
 import React from "react"
 
-const SignIn = ({ email, setEmail, password, setPassword, handleLogIn, handleSignUp, hasAccount, setHasAccount, emailError, passwordError }) => {
+const SignIn = (props) => {
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    handleLogIn,
+    handleSignUp,
+    hasAccount,
+    setHasAccount,
+    emailError,
+    passwordError
+  } = props
+
   return (
        <section className="login">
            <div className="login-container">
@@ -16,7 +29,7 @@ const SignIn = ({ email, setEmail, password, setPassword, handleLogIn, handleSig
                       <>
                       <button onClick={handleLogIn}>Sign In</button>
                       <p>
-                          Don't have an account ?
+                          {"Don't have an account ?"}
                           <span onClick={() => setHasAccount(!hasAccount)}>Sign Up</span></p>
                       </>
                       )

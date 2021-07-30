@@ -16,6 +16,8 @@ const App = () => {
   const [emailError, setEmailError] = useState("")
   const [passwordError, setPasswordError] = useState("")
   const [hasAccount, setHasAccount] = useState(false)
+  console.log(page)
+  console.log(user)
 
   const clearInputs = () => {
     setEmail("")
@@ -65,9 +67,9 @@ const App = () => {
       })
   }
 
-  const handleLogOut = () => {
-    fire.auth().signOut()
-  }
+  // const handleLogOut = () => {
+  //   fire.auth().signOut()
+  // }
 
   const authListener = () => {
     fire.auth().onAuthStateChanged(user => {
@@ -104,7 +106,7 @@ const App = () => {
                     email={email}
                     setEmail={setEmail}
                     password={password}
-                    setPassowrd={setPassword}
+                    setPassword={setPassword}
                     handleLogIn={handleLogIn}
                     handleSignUp={handleSignUp}
                     hasAccount={hasAccount}
