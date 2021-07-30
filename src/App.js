@@ -1,15 +1,14 @@
-import React, {useState, useEffect} from "react"
+import React, { useState, useEffect } from "react"
 import { Switch, Route } from "react-router-dom"
 import Logo from "./Logo"
 import NavBar from "./NavBar"
 import ToDoList from "./ToDoList"
 import FitnessTracker from "./FitnessTracker"
 import VeganLife from "./VeganLife"
-import SignIn from './SignIn'
+import SignIn from "./SignIn"
 import fire from "./fire"
 
- const App = () => {
-     
+const App = () => {
   const [page, setPage] = useState("/")
   const [user, setUser] = useState("")
   const [email, setEmail] = useState("")
@@ -19,89 +18,75 @@ import fire from "./fire"
   const [hasAccount, setHasAccount] = useState(false)
 
   const clearInputs = () => {
-      setEmail("")
-      setPassword("")
+    setEmail("")
+    setPassword("")
   }
 
   const clearErrors = () => {
-      setEmailError("")
-      setPasswordError("")
+    setEmailError("")
+    setPasswordError("")
   }
 
   const handleLogIn = () => {
-      clearErrors()
-      fire
-       .auth()
-       .signInWithEmailAndPassword(email, password)
-       .catch(err => {
-           switch(err.code) {
-               case "auth/invalid-email":
-               case "auth/user-disabled":
-               case "auth/user-not-found":
-                 setEmailError(err.message)
-                 break;
-                case "auth/wrong-password":
-                 setPasswordError(err.message)
-                 break
-           }
-            
-       })
-
-  }
-
-  const handleSignUp = () => {
-      clearErrors()
-
+    clearErrors()
     fire
-    .auth()
-    .createUserWithEmailAndPassword(email, password)
-    .catch(err => {
-        switch(err.code) {
-            case "auth/email-already-in-use":
-            case "auth/invalid-email":
-              setEmailError(err.message)
-              break;
-             case "auth/weak-password":
-              setPasswordError(err.message)
-              break
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .catch(err => {
+        switch (err.code) {
+          case "auth/invalid-email":
+          case "auth/user-disabled":
+          case "auth/user-not-found":
+            setEmailError(err.message)
+            break
+          case "auth/wrong-password":
+            setPasswordError(err.message)
+            break
         }
-         
-    })
-
-  }
-
-
-  const handleLogOut = () => {
-      fire.auth().signOut()
-  }
-
-  const authListener = () => {
-      fire.auth().onAuthStateChanged(user => {
-          if(user) {
-              clearInputs()
-              setUser(user)
-          }else {
-              setUser("")
-          }
       })
   }
 
+  const handleSignUp = () => {
+    clearErrors()
+
+    fire
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .catch(err => {
+        switch (err.code) {
+          case "auth/email-already-in-use":
+          case "auth/invalid-email":
+            setEmailError(err.message)
+            break
+          case "auth/weak-password":
+            setPasswordError(err.message)
+            break
+        }
+      })
+  }
+
+  const handleLogOut = () => {
+    fire.auth().signOut()
+  }
+
+  const authListener = () => {
+    fire.auth().onAuthStateChanged(user => {
+      if (user) {
+        clearInputs()
+        setUser(user)
+      } else {
+        setUser("")
+      }
+    })
+  }
+
   useEffect(() => {
-      authListener()
+    authListener()
+  }, [])
 
-  },[])
-
-  
-
- 
-
-
-   
-
-    return (
+  return (
 
          <div>
-             
 
             <NavBar onChangePage={setPage} />
             <Switch>
@@ -115,7 +100,7 @@ import fire from "./fire"
                     <ToDoList />
                 </Route>
                 <Route path="/signin">
-                    <SignIn 
+                    <SignIn
                     email={email}
                     setEmail={setEmail}
                     password={password}
@@ -125,7 +110,7 @@ import fire from "./fire"
                     hasAccount={hasAccount}
                     setHasAccount={setHasAccount}
                     emailError={emailError}
-                    passwordError={passwordError} 
+                    passwordError={passwordError}
                     />
                 </Route>
                 <Route exact path="/">
@@ -133,13 +118,8 @@ import fire from "./fire"
                 </Route>
             </Switch>
         </div>
-         
 
-        
-
-    )
-
-
+  )
 }
 
-export default App;
+export default App

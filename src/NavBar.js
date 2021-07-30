@@ -3,11 +3,8 @@ import { Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLnk } from "./NavbarElements
 
 import superman from "./superman.jpeg"
 
-
-
-
 const NavBar = () => {
-    return (
+  return (
         <>
          <Nav>
              <NavLink to="/">
@@ -30,11 +27,7 @@ const NavBar = () => {
                 </NavBtn>
          </Nav>
         </>
-    )
-    
-
+  )
 }
 
 export default NavBar
-
-

@@ -1,48 +1,45 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
 
-const FitnessForm = ({onAddExercise}) => {
+const FitnessForm = ({ onAddExercise }) => {
+  const [formData, setFormData] = useState({
+    date: "",
+    type: "",
+    about: ""
+  })
 
-    const [formData, setFormData] = useState({
-        date: "",
-        type: "",
-        about: ""
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
     })
+  }
 
-   const handleChange = (e) => {
-       setFormData({
-        ...formData,
-        [e.target.name]: e.target.value
-       })
-   }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (formData.date && formData.about) {
+      onAddExercise(formData)
+    } else {
+      alert("Please enter workout details!")
+    }
+    setFormData({
+      date: "",
+      type: "",
+      about: ""
 
-   const handleSubmit = (e) => {
-       e.preventDefault()
-       if(formData.date && formData.about) {
-       onAddExercise(formData)
-       } else {
-           alert("Please enter workout details!")
-       }
-       setFormData({
-        date: "",
-        type: "",
-        about: ""
+    })
+  }
 
-       })
-   }
-
-
-
-    return (
+  return (
 
     <form onSubmit={handleSubmit} className="todo-form">
             <h2 className="darkblue">Did You Workout Today?!</h2>
             <form id="fitness-form">
             <label className="darkblue">Date*:</label>
-            <input 
-            className="i" 
-            type="text" 
-            name="date" 
-            placeholder="m/d/y" 
+            <input
+            className="i"
+            type="text"
+            name="date"
+            placeholder="m/d/y"
             value={formData.date}
             onChange={handleChange} />
             <span className="span">
@@ -55,7 +52,7 @@ const FitnessForm = ({onAddExercise}) => {
             <br/>
             <span className="span">
             <input className="search-bar"
-            type="text" 
+            type="text"
             name="about"
             placeholder="How was your workout?"
             value={formData.about}
@@ -64,11 +61,9 @@ const FitnessForm = ({onAddExercise}) => {
             <button className="search-button">Add exercise</button>
             </span>
             </form>
-           
-           
-            </form>
-    )      
 
+            </form>
+  )
 }
 
 export default FitnessForm

@@ -1,29 +1,23 @@
-import React, {useState} from 'react'
-import { RiCloseCircleLine } from 'react-icons/ri';
+import React, { useState } from "react"
+import { RiCloseCircleLine } from "react-icons/ri"
 
+const TodoItem = ({ todo, onDeleteTodo }) => {
+  const { description, id, completed } = todo
 
+  const [checked, setChecked] = useState(false)
 
+  const handleOnChange = () => {
+    setChecked(!checked)
+  }
 
-const TodoItem = ({todo, onDeleteTodo}) => {
-  
-    const { description, id, completed } = todo
+  function handleDelete () {
+    fetch(`http://localhost:3000/myTodos/${id}`, {
+      method: "DELETE"
+    })
+    onDeleteTodo(id)
+  }
 
-    const [checked, setChecked] = useState(false)
-
-    const handleOnChange = () => {
-        setChecked(!checked)
-      }
-
-    
-    
-    function handleDelete() {
-        fetch(`http://localhost:3000/myTodos/${id}`, {
-            method: "DELETE"
-        })
-        onDeleteTodo(id)
-    }
-    
-    return (
+  return (
         <li className="item">
             <strong className="description">{description}</strong>
             <label>
@@ -36,9 +30,7 @@ const TodoItem = ({todo, onDeleteTodo}) => {
             </label>
             <RiCloseCircleLine className='delete-icon' onClick={handleDelete}/>
         </li>
-    )
+  )
 }
-
-
 
 export default TodoItem
