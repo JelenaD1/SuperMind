@@ -6,6 +6,7 @@ import ToDoList from "./ToDoList"
 import FitnessTracker from "./FitnessTracker"
 import VeganLife from "./VeganLife"
 import SignIn from "./SignIn"
+import SignOut from "./SignOut"
 import fire from "./fire"
 
 const App = () => {
@@ -67,9 +68,9 @@ const App = () => {
       })
   }
 
-  // const handleLogOut = () => {
-  //   fire.auth().signOut()
-  // }
+  const handleLogOut = () => {
+    fire.auth().signOut()
+  }
 
   const authListener = () => {
     fire.auth().onAuthStateChanged(user => {
@@ -100,6 +101,9 @@ const App = () => {
                 </Route>
                 <Route path="/todolist">
                     <ToDoList />
+                </Route>
+                <Route path="/logout">
+                    <SignOut handleLogOut={handleLogOut}/>
                 </Route>
                 <Route path="/signin">
                     <SignIn

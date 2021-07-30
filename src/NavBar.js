@@ -1,5 +1,6 @@
 import React from "react"
-import { Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLnk } from "./NavbarElements"
+import { Nav, NavLink, Bars, NavMenu } from "./NavbarElements"
+// NavBtn, NavBtnLnk }
 
 import superman from "./superman.jpeg"
 
@@ -21,10 +22,13 @@ const NavBar = () => {
                  <NavLink to="/veganlife" activeStyle>
                      Vegan Life
                  </NavLink>
+                 <NavLink to="/logout" activeStyle>
+                     Log Out
+                 </NavLink>
              </NavMenu>
-             <NavBtn>
+             {/* <NavBtn>
                 <NavBtnLnk to="/signin">Sign In</NavBtnLnk>
-                </NavBtn>
+                </NavBtn> */}
          </Nav>
         </>
   )
