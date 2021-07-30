@@ -19,8 +19,7 @@ const FitnessCard = ({list, onClickDeleteExercise}) => {
           <p>Date: {list.date} </p>
           <p>Type: {list.type} </p>
           <p>About: {list.about} </p>
-          <RiCloseCircleLine className='delete-icon' onClick={handleDelete}/>
-          
+          <RiCloseCircleLine className='delete-icon' onClick={handleDelete}/> 
         </span>
 
          

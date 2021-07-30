@@ -39,9 +39,6 @@ const ToDoList = () => {
     
     
 
-    
-
-
 
     return ( 
       <div className="list">

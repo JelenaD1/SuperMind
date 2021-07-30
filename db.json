@@ -35,10 +35,6 @@
     {
       "description": "Western Union for mom",
       "id": 17
-    },
-    {
-      "description": "Western Union for mom",
-      "id": 19
     }
   ],
   "workouts": [
@@ -95,12 +91,6 @@
       "type": "lifting",
       "about": "v",
       "id": 9
-    },
-    {
-      "date": "05/03/2021",
-      "type": "",
-      "about": "v",
-      "id": 10
     }
   ]
 }

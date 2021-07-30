@@ -35,7 +35,7 @@ const VeganLife = () => {
 
 
     return (
-        <div className="App" >
+        <div className="App"> 
             <form onSubmit={getSearch} className="search-form">
                 <input placeholder="Search for more recipes"
                 className="search-bar" 

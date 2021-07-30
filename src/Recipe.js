@@ -6,7 +6,7 @@ const Recipe = ({ingredients, title, link, image}) => {
 
     return (
         //or className="item"
-        <div className="item"> 
+        <div className="item fitness-card" > 
             <h1>{title}</h1>
             <ul>
                 {ingredients.map(ingredient => (
