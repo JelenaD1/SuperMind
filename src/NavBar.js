@@ -25,6 +25,9 @@ const NavBar = () => {
                  <NavLink to="/logout" activeStyle>
                      Log Out
                  </NavLink>
+                 <NavLink to="/signin" activeStyle>
+                     Sign In
+                 </NavLink>
              </NavMenu>
              {/* <NavBtn>
                 <NavBtnLnk to="/signin">Sign In</NavBtnLnk>

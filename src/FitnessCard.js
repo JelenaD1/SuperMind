@@ -3,7 +3,7 @@ import { RiCloseCircleLine } from "react-icons/ri"
 
 const FitnessCard = ({ list, onClickDeleteExercise }) => {
   const handleDelete = () => {
-    fetch(`http://localhost:3000/workouts/${list.id}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/workouts/${list.id}`, {
       method: "DELETE"
     })
     onClickDeleteExercise(list.id)

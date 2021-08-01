@@ -11,7 +11,7 @@ const TodoItem = ({ todo, onDeleteTodo }) => {
   }
 
   function handleDelete () {
-    fetch(`http://localhost:3000/myTodos/${id}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/myTodos/${id}`, {
       method: "DELETE"
     })
     onDeleteTodo(id)

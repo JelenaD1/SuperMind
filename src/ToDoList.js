@@ -4,18 +4,16 @@ import NewTodo from "./NewTodo"
 import TodoItem from "./TodoItem"
 
 const ToDoList = () => {
-  const API = "http://localhost:3000/myTodos"
-
   const [todos, setTodos] = useState([])
 
   useEffect(() => {
-    fetch("http://localhost:3000/myTodos")
+    fetch(`${process.env.REACT_APP_API_URL}/myTodos`)
       .then((r) => r.json())
       .then(data => setTodos(data))
   }, [])
 
   const handleAddToDo = (newToDo) => {
-    fetch(API, {
+    fetch(`${process.env.REACT_APP_API_URL}/myTodos`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

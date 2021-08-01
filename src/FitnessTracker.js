@@ -6,13 +6,13 @@ const FitnessTracker = () => {
   const [fitnessList, setFitnessList] = useState([])
 
   useEffect(() => {
-    fetch("http://localhost:3000/workouts")
+    fetch(`${process.env.REACT_APP_API_URL}/workouts`)
       .then(resp => resp.json())
       .then(data => setFitnessList(data))
   }, [])
 
   const handleAddExercise = (newExercise) => {
-    fetch("http://localhost:3000/workouts", {
+    fetch(`${process.env.REACT_APP_API_URL}/workouts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

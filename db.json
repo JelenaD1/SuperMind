@@ -1,10 +1,6 @@
 {
   "myTodos": [
     {
-      "description": "clean house",
-      "id": 8
-    },
-    {
       "description": "lamborghini aventador",
       "id": 9
     },
@@ -85,12 +81,6 @@
       "type": "",
       "about": "v",
       "id": 8
-    },
-    {
-      "date": "05/03/2021",
-      "type": "lifting",
-      "about": "v",
-      "id": 9
     }
   ]
 }
