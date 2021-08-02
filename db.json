@@ -9,10 +9,6 @@
       "id": 10
     },
     {
-      "description": "lamborghini aventador",
-      "id": 12
-    },
-    {
       "description": "clean house",
       "id": 13
     },
@@ -75,12 +71,6 @@
       "type": "lifting",
       "about": "v",
       "id": 7
-    },
-    {
-      "date": "1/10/2021",
-      "type": "",
-      "about": "v",
-      "id": 8
     }
   ]
 }

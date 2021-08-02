@@ -5,24 +5,43 @@ import NavBar from "./NavBar"
 import ToDoList from "./ToDoList"
 import FitnessTracker from "./FitnessTracker"
 import VeganLife from "./VeganLife"
-import SignIn from "./SignIn"
+import SignInForm from "./SignInForm"
 import SignOut from "./SignOut"
 import fire from "./fire"
+
+export const PrivateRoutes = ({ onLogOut }) => (
+  <>
+    <Route path="/fitness">
+      <FitnessTracker />
+    </Route>
+    <Route path="/veganlife">
+      <VeganLife />
+    </Route>
+    <Route path="/todolist">
+      <ToDoList />
+    </Route>
+    <Route path="/logout">
+      <SignOut handleLogOut={onLogOut} />
+    </Route>
+  </>
+)
 
 const App = () => {
   const [page, setPage] = useState("/")
   const [user, setUser] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
   const [emailError, setEmailError] = useState("")
   const [passwordError, setPasswordError] = useState("")
   const [hasAccount, setHasAccount] = useState(false)
+  const [signInForm, setSignInForm] = useState({
+    email: "",
+    password: ""
+  })
+
   console.log(page)
   console.log(user)
 
   const clearInputs = () => {
-    setEmail("")
-    setPassword("")
+    setSignInForm({})
   }
 
   const clearErrors = () => {
@@ -34,7 +53,7 @@ const App = () => {
     clearErrors()
     fire
       .auth()
-      .signInWithEmailAndPassword(email, password)
+      .signInWithEmailAndPassword(signInForm.email, signInForm.password)
       .catch(err => {
         switch (err.code) {
           case "auth/invalid-email":
@@ -54,7 +73,7 @@ const App = () => {
 
     fire
       .auth()
-      .createUserWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(signInForm.email, signInForm.password)
       .catch(err => {
         switch (err.code) {
           case "auth/email-already-in-use":
@@ -83,47 +102,41 @@ const App = () => {
     })
   }
 
+  const handleSignInFormChange = (e) => {
+    setSignInForm({
+      ...signInForm,
+      [e.target.name]: e.target.value
+    })
+  }
+
   useEffect(() => {
     authListener()
   }, [])
 
   return (
-
-         <div>
-
-            <NavBar onChangePage={setPage} />
-            <Switch>
-                <Route path="/fitness">
-                    <FitnessTracker />
-                </Route>
-                <Route path="/veganlife">
-                    <VeganLife />
-                </Route>
-                <Route path="/todolist">
-                    <ToDoList />
-                </Route>
-                <Route path="/logout">
-                    <SignOut handleLogOut={handleLogOut}/>
-                </Route>
-                <Route path="/signin">
-                    <SignIn
-                    email={email}
-                    setEmail={setEmail}
-                    password={password}
-                    setPassword={setPassword}
-                    handleLogIn={handleLogIn}
-                    handleSignUp={handleSignUp}
-                    hasAccount={hasAccount}
-                    setHasAccount={setHasAccount}
-                    emailError={emailError}
-                    passwordError={passwordError}
-                    />
-                </Route>
-                <Route exact path="/">
-                    <Logo />
-                </Route>
-            </Switch>
-        </div>
+    <div>
+      <NavBar onChangePage={setPage} />
+      <Switch>
+      <Route exact path="/">
+          <Logo />
+        </Route>
+        {user && (<PrivateRoutes onLogOut={handleLogOut} />)}
+        {!user && (
+          <Route path="/signin">
+            <SignInForm
+                value={signInForm}
+                onChange={handleSignInFormChange}
+                onLogIn={handleLogIn}
+                handleSignUp={handleSignUp}
+                hasAccount={hasAccount}
+                setHasAccount={setHasAccount}
+                emailError={emailError}
+                passwordError={passwordError}
+            />
+          </Route>
+        )}
+      </Switch>
+    </div>
 
   )
 }

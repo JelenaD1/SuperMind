@@ -13,19 +13,19 @@ const NavBar = () => {
              </NavLink>
              <Bars />
              <NavMenu>
-                 <NavLink to="/todolist" activeStyle>
+                 <NavLink to="/todolist" >
                      To Do List
                  </NavLink>
-                 <NavLink to="/fitness" activeStyle>
+                 <NavLink to="/fitness" >
                      Fitness Tracker
                  </NavLink>
-                 <NavLink to="/veganlife" activeStyle>
+                 <NavLink to="/veganlife" >
                      Vegan Life
                  </NavLink>
-                 <NavLink to="/logout" activeStyle>
+                 <NavLink to="/logout" >
                      Log Out
                  </NavLink>
-                 <NavLink to="/signin" activeStyle>
+                 <NavLink to="/signin" >
                      Sign In
                  </NavLink>
              </NavMenu>
